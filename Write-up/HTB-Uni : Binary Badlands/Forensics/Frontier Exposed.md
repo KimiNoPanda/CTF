@@ -5,6 +5,7 @@
 
 Accessing the docker URL will lead us to this page
 
+![image](https://github.com/KimiNoPanda/CTF/blob/main/Write-up/HTB-Uni%20%3A%20Binary%20Badlands/Forensics/assets/1.png)
 
 By opening each file, we can see in the `.bash_history` :
 
