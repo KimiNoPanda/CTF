@@ -30,4 +30,6 @@ wget https://raw.githubusercontent.com/vulmon/Vulmap/refs/heads/master/Vulmap-Li
 cp vulnmap-linux.py /var/www/html
 ```
 
+![image](https://github.com/KimiNoPanda/CTF/blob/main/Write-up/HTB-Uni%20%3A%20Binary%20Badlands/Forensics/assets/2.png)
+
 We can see the use of a password and copying it into cyberchef gives us the flag : HTB{C2_cr3d3nt14ls_3xp0s3d}
